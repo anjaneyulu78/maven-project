@@ -1,5 +1,5 @@
 pipeline{
-    agent 172.31.37.41
+    agent ip-172-31-37-41.ap-south-1.compute.internal
     tools{
         maven 'local_maven'
     }
