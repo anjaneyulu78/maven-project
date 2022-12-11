@@ -1,20 +1,21 @@
-pipeleine{
+pipeline{
     agent any
     tools{
         maven 'local_maven'
     }
     stages{
-        stage('build'){
+        stage('buid'){
             steps{
-                sh 'mvn clean package'
+            sh 'mvn clean package'
             }
             post{
                 success{
-                    echo 'archiving artifacts'
+                    echo 'archieve artifacts'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
+
         stage('deploy to tomcat'){
             steps{
                 deploy adapters: [tomcat9(credentialsId: '98ec6d3a-ee67-4f65-ab81-12aeaf4a9762', path: '', url: 'http://13.234.112.208:8180/')], contextPath: 'webapplication', war: '**/*.war'
