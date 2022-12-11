@@ -6,18 +6,18 @@ pipeline{
     stages{
         stage('buid'){
             steps{
-            mvn 'clean package'
+            sh 'mvn clean package'
             }
             post{
                 success{
                     echo 'archieve artifacts'
-                    archiveArtifacts artifacts:'**/target/*.war'
+                    archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
         stage('deployment'){
             steps{
-               deploy adapters: [tomcat9(credentialsId: '7b180588-149d-4197-9a1e-276649f4642e', path: '', url: 'http://13.232.233.56:8180/')], contextPath: 'webapp', war: '**/*.war' 
+               deploy adapters: [tomcat9(credentialsId: 'c344b454-153f-4f8e-929c-19d2a346c18d', path: '', url: 'http://52.66.199.52:8180/')], contextPath: 'webapplication', war: '**/*.war'
             }
         }
     }
