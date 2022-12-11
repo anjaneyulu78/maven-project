@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+    tools{
+        maven 'local_maven'
+    }
+    stages{
+        stage('buid'){
+            steps{
+            mvn 'clean package'
+            }
+            post{
+                success{
+                    echo 'archieve artifacts'
+                    archiveArtifacts artifacts:'**/target/*.war'
+                }
+            }
+        }
+        stage('deployment'){
+            steps{
+               deploy adapters: [tomcat9(credentialsId: '7b180588-149d-4197-9a1e-276649f4642e', path: '', url: 'http://13.232.233.56:8180/')], contextPath: 'webapp', war: '**/*.war' 
+            }
+        }
+    }
+}
