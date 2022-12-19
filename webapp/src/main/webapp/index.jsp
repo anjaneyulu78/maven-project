@@ -9,7 +9,7 @@ p    {color: red;}
 </head>
 <body>
 
-<h1>trymar solutions</h1>
+<h1>thrymr solutions</h1>
 
 
 </body>
